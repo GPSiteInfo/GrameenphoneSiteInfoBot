@@ -16,26 +16,23 @@ class Config(object):
     # REQUIRED
     #Login to https://my.telegram.org and fill in these slots with the details given by it
 
-    API_ID = 123456  # integer value, dont use ""
-    API_HASH = ""
-    TOKEN = ""
-    OWNER_ID = 123456789  # If you dont know, run the bot and do /id in your private chat with it, also an integer
-    OWNER_USERNAME = "awoo"
-    SUPPORT_CHAT = "awoo"  # Your own group for support, do not add the @
-    JOIN_LOGGER = 1234567890123 # Prints any new group the bot is added to, prints just the name and ID.
-    EVENT_LOGS = 1234567890123 # Prints information like gbans, sudo promotes, AI enabled disable states that may help in debugging and shit
+    API_ID = 2076846
+    API_HASH = "a7c38b63155953f8c529718a3ac0003a"
+    TOKEN = "5223488987:AAElKjdePVrpuRtUbU0K31cFNG_jU2ndJzs"
+    OWNER_ID = 1063430421
+    OWNER_USERNAME = "smexynos7870"
+    SUPPORT_CHAT = "AtrociousBotSupport"
+    JOIN_LOGGER = -1001157029074
+    EVENT_LOGS = -1001648580903
 
     #RECOMMENDED
-    ARQ_API_KEY = ""
-    ARQ_API_URL = "https://thearq.tech/"
     SQLALCHEMY_DATABASE_URI = 'something://somewhat:user@hosturl:port/databasename'  # needed for any database modules
     LOAD = []
     NO_LOAD = ['rss', 'cleaner', 'connection', 'math']
     WEBHOOK = False
     INFOPIC = True
     URL = None
-    SPAMWATCH_API = ""  # go to support.spamwat.ch to get key
-    SPAMWATCH_SUPPORT_CHAT = ""
+ 
 
     #OPTIONAL
     ## Authorized group for mirror bot.
@@ -63,39 +60,6 @@ class Config(object):
     BL_CHATS = []  # List of groups that you want blacklisted.
     SPAMMERS = None
     
-    # Mirror Bot
-    GDRIVE_FOLDER_ID = ""
-    DOWNLOAD_DIR = "/usr/src/app/downloads"
-    DOWNLOAD_STATUS_UPDATE_INTERVAL = 5
-    AUTO_DELETE_MESSAGE_DURATION = -1
-    IS_TEAM_DRIVE = ""
-    AUTHORIZED_CHATS = ""
-    IGNORE_PENDING_REQUESTS = ""
-    USE_SERVICE_ACCOUNTS = ""
-    INDEX_URL = ""
-    STATUS_LIMIT = ""
-    STOP_DUPLICATE = ""
-    TG_SPLIT_SIZE = ""
-    BASE_URL_OF_BOT = ""
-    IS_VPS = ""
-    MEGA_API_KEY = ""
-    MEGA_EMAIL_ID = ""
-    MEGA_PASSWORD = ""
-    BLOCK_MEGA_FOLDER = ""
-    BLOCK_MEGA_LINKS = ""
-    TORRENT_DIRECT_LIMIT = ""
-    ZIP_UNZIP_LIMIT = ""
-    CLONE_LIMIT = ""
-    MEGA_LIMIT = ""
-    VIEW_LINK = ""
-    BUTTON_FOUR_NAME = ""
-    BUTTON_FOUR_URL = ""
-    BUTTON_FIVE_NAME = ""
-    BUTTON_FIVE_URL = ""
-    BUTTON_SIX_NAME = ""
-    BUTTON_SIX_URL = ""
-
-
 class Production(Config):
     LOGGER = True
 
