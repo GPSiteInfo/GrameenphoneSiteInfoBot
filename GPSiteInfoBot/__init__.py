@@ -6,24 +6,8 @@ import spamwatch
 import threading
 import telegram.ext as tg
 
-from aiohttp import ClientSession
 from telegram.ext import CallbackContext
-from pyrogram import Client, errors
-from Python_ARQ import ARQ
 from telethon import TelegramClient
-
-AUTHORIZED_CHATS = set()
-SUDO_USERS = set()
-AS_DOC_USERS = set()
-AS_MEDIA_USERS = set()
-DRIVES_IDS = []
-DRIVES_NAMES = []
-INDEX_URLS = []
-Interval = []
-download_dict = {}
-download_dict_lock = threading.Lock()
-status_reply_dict = {}
-status_reply_dict_lock = threading.Lock()
 
 
 StartTime = time.time()
@@ -188,19 +172,6 @@ else:
         raise Exception(
             "Your authorized chat list does not contain valid integers.")
 
-    try:
-        AS_DOCUMENT = Config("AS_DOCUMENT")
-        AS_DOCUMENT = AS_DOCUMENT.lower() == "true"
-    except KeyError:
-        AS_DOCUMENT = False
-
-    try:
-        CUSTOM_FILENAME = Config("CUSTOM_FILENAME")
-        if len(CUSTOM_FILENAME) == 0:
-            raise KeyError
-    except KeyError:
-        CUSTOM_FILENAME = None
-
 
     AI_API_KEY = Config.AI_API_KEY
     ALLOW_EXCL = Config.ALLOW_EXCL
@@ -230,49 +201,6 @@ else:
     WEBHOOK = Config.WEBHOOK
 
 
-DRIVES_NAMES.append("Main")
-DRIVES_IDS.append(parent_id)
-if os.path.exists("drive_folder"):
-    with open("drive_folder", "r+") as f:
-        lines = f.readlines()
-        for line in lines:
-            try:
-                temp = line.strip().split()
-                DRIVES_IDS.append(temp[1])
-                DRIVES_NAMES.append(temp[0].replace("_", " "))
-            except:
-                pass
-            try:
-                INDEX_URLS.append(temp[2])
-            except IndexError as e:
-                INDEX_URLS.append(None)
-
-
-if not SPAMWATCH_API:
-    sw = None
-    LOGGER.warning("SpamWatch API key missing! recheck your config.")
-else:
-    try:
-        sw = spamwatch.Client(SPAMWATCH_API)
-    except:
-        sw = None
-        LOGGER.warning("Can't connect to SpamWatch!")
-
-# Create download directory, if not exist.
-    if not os.path.isdir(DOWNLOAD_LOCATION):
-        os.makedirs(DOWNLOAD_LOCATION)
-
-
-
-# Install aiohttp session
-print("[Optimus Prime]: Initializing AIOHTTP Session")
-aiohttpsession = ClientSession()    
-    
-# Install arq
-print("[Optimus Prime]: Initializing ARQ Client")
-arq = ARQ(ARQ_API_URL, ARQ_API_KEY, aiohttpsession)
-
-pbot = Client("PyrogramBot", api_id=API_ID, api_hash=API_HASH, bot_token=TOKEN)
 telethn = TelegramClient("TelethonBot", API_ID, API_HASH)
 updater = tg.Updater(TOKEN, workers=8, use_context=True)
 bot = updater.bot
