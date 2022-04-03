@@ -68,11 +68,8 @@ if ENV:
 
     ALLOW_CHATS = "True"
     ALLOW_EXCL = os.environ.get("ALLOW_EXCL", False)
-    AI_API_KEY = os.environ.get("AI_API_KEY", None)
     API_HASH = os.environ.get("API_HASH", None)
     API_ID = os.environ.get("API_ID", None)
-    ARQ_API_KEY = os.environ.get("ARQ_API_KEY", None)
-    ARQ_API_URL = os.environ.get("ARQ_API_URL", None)
     BAN_STICKER = os.environ.get("BAN_STICKER", "CAADAgADOwADPPEcAXkko5EB3YGYAg")
     CASH_API_KEY = os.environ.get("CASH_API_KEY", None)
     CERT_PATH = os.environ.get("CERT_PATH")
@@ -88,45 +85,10 @@ if ENV:
     STRICT_GBAN = bool(os.environ.get("STRICT_GBAN", False))
     STRICT_GMUTE = bool(os.environ.get("STRICT_GMUTE", False))
     SUPPORT_CHAT = os.environ.get("SUPPORT_CHAT", None)
-    TEMP_DOWNLOAD_DIRECTORY = os.environ.get("TEMP_DOWNLOAD_DIRECTORY", "./")
     TIME_API_KEY = os.environ.get("TIME_API_KEY", None)
     URL = os.environ.get("URL", "")  # Does not contain token
     WEBHOOK = bool(os.environ.get("WEBHOOK", False))
     WORKERS = int(os.environ.get("WORKERS", 8))
-
-    # Optimus Prime Bot By AL-Noman
-    AUTO_DELETE_MESSAGE_DURATION = -1
-    BUTTON_FOUR_NAME = os.environ.get("BUTTON_FOUR_NAME")
-    BUTTON_FOUR_URL = os.environ.get("BUTTON_FOUR_URL")
-    BUTTON_FIVE_NAME = os.environ.get("BUTTON_FIVE_NAME")
-    BUTTON_FIVE_URL = os.environ.get("BUTTON_FIVE_URL")
-    BUTTON_SIX_NAME = os.environ.get("BUTTON_SIX_NAME")
-    BUTTON_SIX_URL = os.environ.get("BUTTON_SIX_URL")
-    CLONE_LIMIT = os.environ.get("CLONE_LIMIT", None)
-    CRYPT = os.environ.get("CRYPT", None)
-    DOWNLOAD_DIR = os.environ.get("DOWNLOAD_DIR", "usr/src/app/downloads")
-    DOWNLOAD_LOCATION = "./DOWNLOADS"
-    DOWNLOAD_STATUS_UPDATE_INTERVAL = os.environ.get("DOWNLOAD_STATUS_UPDATE_INTERVAL")
-    EQUAL_SPLITS = bool(os.environ.get("EQUAL_SPLITS", False))
-    INDEX_URLS = os.environ.get("INDEX_URL", None)
-    INDEX_URL = os.environ.get("INDEX_URL", None)
-    IS_TEAM_DRIVE = bool(os.environ.get("IS_TEAM_DRIVE", False))
-    parent_id = os.environ.get("GDRIVE_FOLDER_ID")
-    PHPSESSID = os.environ.get("PHPSESSID", None)
-    RSS_CHAT_ID = os.environ.get("RSS_CHAT_ID")
-    rss_session = os.environ.get("USER_STRING_SESSION, api_id=int(TELEGRAM_API), api_hash=TELEGRAM_HASH", None)
-    SHORTENER = os.environ.get("SHORTENER")
-    SHORTENER_API = os.environ.get("SHORTENER_API")
-    STATUS_LIMIT = os.environ.get("STATUS_LIMIT", "3")
-    STOP_DUPLICATE = bool(os.environ.get("STOP_DUPLICATE", False))
-    TG_SPLIT_SIZE = os.environ.get("TG_SPLIT_SIZE", 2097151000)
-    UPTOBOX_TOKEN = os.environ.get("UPTOBOX_TOKEN", None)
-    USE_SERVICE_ACCOUNTS = False
-    VIEW_LINK = bool(os.environ.get("VIEW_LINK", False))
-    AS_DOCUMENT = False
-    CUSTOM_FILENAME = None
-    PROCESS_MAX_TIMEOUT = 3600
-    TG_MAX_FILE_SIZE = 2097152000
 
     try:
         BL_CHATS = set(int(x) for x in os.environ.get("BL_CHATS", "").split())
