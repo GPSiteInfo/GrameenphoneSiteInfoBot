@@ -144,7 +144,6 @@ else:
     SUPPORT_CHAT = Config.SUPPORT_CHAT
     TIME_API_KEY = Config.TIME_API_KEY
     URL = Config.URL
-    WALL_API = Config.WALL_API
     WORKERS = Config.WORKERS
     WEBHOOK = Config.WEBHOOK
 
