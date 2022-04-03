@@ -10,7 +10,6 @@ from GPSiteInfoBot import (
     LOGGER,
     OWNER_ID,
     PORT,
-    pbot,
     TOKEN,
     URL,
     WEBHOOK,
@@ -563,8 +562,6 @@ def main():
 
 if __name__ == "__main__":
     LOGGER.info("Successfully loaded modules: " + str(ALL_MODULES))
-    LOGGER.info("Starting Pyrogram")
-    pbot.start()
     LOGGER.info("Starting Telethon")
     telethn.start(bot_token=TOKEN)
     main()
