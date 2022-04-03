@@ -26,7 +26,7 @@ class Config(object):
     EVENT_LOGS = -1001648580903
 
     #RECOMMENDED
-    SQLALCHEMY_DATABASE_URI = 'postgres://fiybstodajfijm:17052b4a6e1c723dd6d300a0ec324961b03becb561f62fa90cf8d16f8354c9e6@ec2-54-173-77-184.compute-1.amazonaws.com:5432/dbiq9077nq8qkg'
+    SQLALCHEMY_DATABASE_URI = postgres://fiybstodajfijm:17052b4a6e1c723dd6d300a0ec324961b03becb561f62fa90cf8d16f8354c9e6@ec2-54-173-77-184.compute-1.amazonaws.com:5432/dbiq9077nq8qkg
     LOAD = []
     NO_LOAD = ['rss', 'cleaner', 'connection', 'math']
     WEBHOOK = False
