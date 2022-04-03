@@ -128,12 +128,6 @@ else:
     except ValueError:
         raise Exception("Your tiger users list does not contain valid integers.")
 
-    try:
-        AUTHORIZED_CHATS = set(int(x) for x in Config.AUTHORIZED_CHATS or [])
-    except ValueError:
-        raise Exception(
-            "Your authorized chat list does not contain valid integers.")
-
 
     AI_API_KEY = Config.AI_API_KEY
     ALLOW_EXCL = Config.ALLOW_EXCL
