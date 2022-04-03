@@ -7,7 +7,7 @@
          "AL-NOMAN"
       ],
    "logo": "https://telegra.ph/file/7a3dfe4db964f905b5eba.jpg",
-   "repository": "https://github.com/Al-Noman-Pro/GPSiteInfoBot",
+   "repository": "https://github.com/gpsiteinfo/GrameenphoneSiteInfoBot",
    "buildpacks": [
     {
       "url": "heroku/python"
@@ -225,5 +225,5 @@
       "bot"
    ],
    "name": "GPSiteInfoBot",
-   "repository": "https://github.com/Al-Noman-Pro/GPSiteInfoBot"
+   "repository": "https://github.com/gpsiteinfo/GrameenphoneSiteInfoBot"
 }
