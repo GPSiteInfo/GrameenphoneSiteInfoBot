@@ -35,7 +35,6 @@ class Config(object):
  
 
     #OPTIONAL
-    ## Authorized group for mirror bot.
     ##List of id's -  (not usernames) for users which have sudo access to the bot.
     SUDO_USERS = get_user_list('elevated_users.json', 'sudos')
     ##List of id's - (not usernames) for developers who will have the same perms as the owner
@@ -55,8 +54,6 @@ class Config(object):
     ALLOW_EXCL = True  # Allow ! commands as well as / (Leave this to true so that blacklist can work)
     CASH_API_KEY = 'awoo'  # Get your API key from https://www.alphavantage.co/support/#api-key
     TIME_API_KEY = 'awoo'  # Get your API key from https://timezonedb.com/api
-    WALL_API = 'awoo'  #For wallpapers, get one from https://wall.alphacoders.com/api.php
-    AI_API_KEY = 'awoo'  #For chatbot, get one from https://coffeehouse.intellivoid.net/dashboard
     BL_CHATS = []  # List of groups that you want blacklisted.
     SPAMMERS = None
     
