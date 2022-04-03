@@ -35,6 +35,7 @@ class Config(object):
  
 
     #OPTIONAL
+    AUTHORIZED_CHATS = ""
     ##List of id's -  (not usernames) for users which have sudo access to the bot.
     SUDO_USERS = get_user_list('elevated_users.json', 'sudos')
     ##List of id's - (not usernames) for developers who will have the same perms as the owner
