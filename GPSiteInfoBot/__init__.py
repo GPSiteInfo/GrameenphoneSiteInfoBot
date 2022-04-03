@@ -129,7 +129,6 @@ else:
         raise Exception("Your tiger users list does not contain valid integers.")
 
 
-    AI_API_KEY = Config.AI_API_KEY
     ALLOW_EXCL = Config.ALLOW_EXCL
     API_ID = Config.API_ID
     API_HASH = Config.API_HASH
