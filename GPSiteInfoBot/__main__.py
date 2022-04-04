@@ -64,8 +64,7 @@ def get_readable_time(seconds: int) -> str:
 
 
 PM_START_TEXT = """
-Hello {}, I'm {}. [ ](https://telegra.ph/file/b9b8713a3376bea56e6b6.jpg)
-I am a group management bot.
+Hello {}, I'm {}. [ ](https://telegra.ph/file/280c5a8940072c0093fcd.jpg)
 I can manage your group with lots of useful features.
 For commands and help press /help .
 """
