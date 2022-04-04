@@ -6,7 +6,8 @@ from telegram.utils.helpers import escape_markdown
 from telegram import ParseMode, Update, InlineKeyboardButton, InlineKeyboardMarkup
 
 SITE_INFO_TEXT = """
-[ ](https://telegra.ph/file/3a093be342d6ff3e77221.jpg)
+Hello {}, I'm {}. (https://telegra.ph/file/3a093be342d6ff3e77221.jpg)
+
 📶 Site Code : BGKRP1
 
 📶 Site Name : Karapara 1
