@@ -1,6 +1,6 @@
 from GPSiteInfoBot import dispatcher
 
-from GPSiteInfoBot.modules.helper_func.filters import CustomFilters
+from GPSiteInfoBot.modules.helper_funcs.filters import CustomFilters
 
 from telegram.ext.dispatcher import DispatcherHandlerStop, run_async
 from telegram.ext import CallbackContext, CommandHandler
