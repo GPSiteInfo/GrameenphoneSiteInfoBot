@@ -7,10 +7,13 @@ from telegram.utils.helpers import escape_markdown
 from telegram import ParseMode, Update
 
 SITE_INFO_TEXT = """
-📶 Site Code :
-📶 Site Name :
+📶 Site Code : BGKRP1
 
-🌏 Site Location : 
+📶 Site Name : Karapara 1
+
+📶 ISS_TYPE: Non-shared .
+
+🌏 Site Location : Karapara, Dashani, Bagerhat.
 """
 
 SITE_LOCATION_BUTTON =  = [[InlineKeyboardButton(text="Go to site with maps", url="https://github.com/Al-Noman-Pro/GPSiteInfoBot"),]
