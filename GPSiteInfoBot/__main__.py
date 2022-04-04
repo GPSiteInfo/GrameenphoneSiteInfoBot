@@ -64,7 +64,7 @@ def get_readable_time(seconds: int) -> str:
 
 
 PM_START_TEXT = """
-Hello {}, I'm {}. [ ](https://telegra.ph/file/280c5a8940072c0093fcd.jpg)
+Hello {}, I'm {}. [ ](https://telegra.ph/file/c063ef61885578d9e7c20.jpg)
 I can give you Grameenphone all site information of Bagerhat.
 """
 
