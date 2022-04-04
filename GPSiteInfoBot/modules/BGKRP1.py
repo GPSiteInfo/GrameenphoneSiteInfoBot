@@ -13,11 +13,15 @@ SITE_INFO_TEXT = """
 🌏 Site Location : 
 """
 
+SITE_LOCATION_BUTTON =  = [[InlineKeyboardButton(text="Go to site with maps", url="https://github.com/Al-Noman-Pro/GPSiteInfoBot"),]
+
+
 dispatcher.run_async
 def bgkrp1(update: Update, context: CallbackContext):
     update.effective_message.reply_text(
             SITE_INFO_TEXT,
-            parse_mode=ParseMode.HTML)
+            parse_mode=ParseMode.HTML,
+            reply_markup=InlineKeyboardMarkup(SITE_LOCATION_BUTTON))
 
 
 bkrp1_handler = CommandHandler("bgkrp1", bgkrp1)
