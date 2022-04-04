@@ -1,3 +1,25 @@
+from GPSiteInfoBot import dispatcher
+
+
+from telegram.ext.dispatcher import DispatcherHandlerStop, run_async
+from telegram.ext import CallbackContext
+from telegram.utils.helpers import escape_markdown
+from telegram import ParseMode, Update
+
+BGKRP1_TEXT = """
+Hi ,I am Optimus Prime Bot.
+I'm a group management bot.
+"""
+
+dispatcher.run_async
+def bgkrp1(update: Update, context: CallbackContext):
+    update.effective_message.reply_text(
+                BGKRP1_TEXT.format(
+                    escape_markdown(first_name), escape_markdown(context.bot.first_name)),
+                parse_mode=ParseMode.MARKDOWN)
+
+
+
 __help__ = """
 
 *live cricket score*
@@ -26,3 +48,7 @@ __help__ = """
 
 """
 __mod_name__ = "BGKRP1"
+
+
+bkrp1_handler = CommandHandler("bgkrp1", bgkrp1)
+dispatcher.add_handler(bkrp1_handler)
