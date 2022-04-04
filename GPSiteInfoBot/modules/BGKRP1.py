@@ -6,47 +6,18 @@ from telegram.ext import CallbackContext, CommandHandler
 from telegram.utils.helpers import escape_markdown
 from telegram import ParseMode, Update
 
-BGKRP1_TEXT = """
-Hi ,I am Optimus Prime Bot.
-I'm a group management bot.
+SITE_INFO_TEXT = """
+📶 Site Code :
+📶 Site Name :
+
+🌏 Site Location : 
 """
 
 dispatcher.run_async
 def bgkrp1(update: Update, context: CallbackContext):
     update.effective_message.reply_text(
-            BGKRP1_TEXT,
+            SITE_INFO_TEXT,
             parse_mode=ParseMode.HTML)
-
-
-
-__help__ = """
-
-*live cricket score*
-*/cs* : Latest live scores from cricinfo.
-
-*Get Fake details from fakenamegenerator.com*                             
-*/fakeinfo* : returns fake information.
-
-*GPS*
-*/gps* <Place> : Show Location on a map.
-
-*Image To Pdf*
-*/pdf* : Reply to an image (as document) or group of images to make as pdf. 
-
-*Show Json*
-*/json* : Reply any message with /json .
- 
-*Style Text*
-*/weebify* : Weebify Text.
-*/square* : square Text.
-*/blue* : Blues text.
-
-*Zip - Unzip*
-*/zip* : reply to a telegram file to compress it in .zip format.
-*/unzip* : reply to a telegram file to decompress it from the .zip format.
-
-"""
-__mod_name__ = "BGKRP1"
 
 
 bkrp1_handler = CommandHandler("bgkrp1", bgkrp1)
