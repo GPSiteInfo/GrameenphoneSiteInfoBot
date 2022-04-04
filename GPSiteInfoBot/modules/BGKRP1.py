@@ -14,9 +14,9 @@ I'm a group management bot.
 dispatcher.run_async
 def bgkrp1(update: Update, context: CallbackContext):
     update.effective_message.reply_text(
-                BGKRP1_TEXT.format(
-                    escape_markdown(first_name), escape_markdown(context.bot.first_name)),
-                parse_mode=ParseMode.MARKDOWN)
+            BGKRP1_TEXT,
+            parse_mode=ParseMode.HTML,
+            reply_markup=InlineKeyboardMarkup)
 
 
 
