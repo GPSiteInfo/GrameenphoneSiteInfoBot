@@ -10,13 +10,13 @@ from telegram import ParseMode, Update, InlineKeyboardButton, InlineKeyboardMark
 Tower_Photo = "https://telegra.ph/file/3a093be342d6ff3e77221.jpg"
 
 SITE_INFO_TEXT = """
-📶 Site Code : BGKRP1
+📶 Site Code: BGKRP1
 
-📶 Site Name : Karapara 1
+📶 Site Name: Karapara 1
 
 📶 ISS_TYPE: Non-shared .
 
-📶 Site Location : Karapara, Dashani, Bagerhat.
+📶 Site Location: Karapara, Dashani, Bagerhat.
 """
 
 SITE_LOCATION_BUTTON = [[InlineKeyboardButton(text="✳ Go To BGKRP1 Site With Maps", url="https://www.google.com/maps/place/22%C2%B038'19.0%22N+89%C2%B045'54.6%22E/@22.63861,89.76517,17z?gl=bd"),]]
