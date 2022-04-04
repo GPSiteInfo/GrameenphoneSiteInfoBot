@@ -1,11 +1,28 @@
 __help__ = """
 
-Site Code : BGKRP1
+*live cricket score*
+*/cs* : Latest live scores from cricinfo.
 
-Location  : Karapara,Dashani,Bagerhat,Bagerhat .
+*Get Fake details from fakenamegenerator.com*                             
+*/fakeinfo* : returns fake information.
 
-GPS Location : (Click Here)[https://www.google.com/maps/dir//22.63861,89.76517/@22.6901757,89.7167656,11z/data=!4m5!4m4!1m1!4e2!1m0!3e0?gl=bd]
+*GPS*
+*/gps* <Place> : Show Location on a map.
 
-ISS_TYPE : Non-shared.
+*Image To Pdf*
+*/pdf* : Reply to an image (as document) or group of images to make as pdf. 
+
+*Show Json*
+*/json* : Reply any message with /json .
+ 
+*Style Text*
+*/weebify* : Weebify Text.
+*/square* : square Text.
+*/blue* : Blues text.
+
+*Zip - Unzip*
+*/zip* : reply to a telegram file to compress it in .zip format.
+*/unzip* : reply to a telegram file to decompress it from the .zip format.
+
 """
-__mod_name__ = "bgkrp"
+__mod_name__ = "More Tools"
