@@ -9,7 +9,6 @@ import telegram.ext as tg
 from telegram.ext import CallbackContext
 from telethon import TelegramClient
 
-
 StartTime = time.time()
 
 # enable logging
@@ -70,8 +69,6 @@ if ENV:
     ALLOW_EXCL = os.environ.get("ALLOW_EXCL", False)
     API_HASH = os.environ.get("API_HASH", None)
     API_ID = os.environ.get("API_ID", None)
-    BAN_STICKER = os.environ.get("BAN_STICKER", "CAADAgADOwADPPEcAXkko5EB3YGYAg")
-    CASH_API_KEY = os.environ.get("CASH_API_KEY", None)
     CERT_PATH = os.environ.get("CERT_PATH")
     DB_URI = os.environ.get("DATABASE_URL")
     DEL_CMDS = bool(os.environ.get("DEL_CMDS", False))
@@ -80,12 +77,6 @@ if ENV:
     LOAD = os.environ.get("LOAD", "").split()
     NO_LOAD = os.environ.get("NO_LOAD", "translation").split()
     PORT = int(os.environ.get("PORT", 5000))
-    SPAMWATCH_API = os.environ.get("SPAMWATCH_API", None)
-    SPAMWATCH_SUPPORT_CHAT = os.environ.get("SPAMWATCH_SUPPORT_CHAT", None)
-    STRICT_GBAN = bool(os.environ.get("STRICT_GBAN", False))
-    STRICT_GMUTE = bool(os.environ.get("STRICT_GMUTE", False))
-    SUPPORT_CHAT = os.environ.get("SUPPORT_CHAT", None)
-    TIME_API_KEY = os.environ.get("TIME_API_KEY", None)
     URL = os.environ.get("URL", "")  # Does not contain token
     WEBHOOK = bool(os.environ.get("WEBHOOK", False))
     WORKERS = int(os.environ.get("WORKERS", 8))
@@ -133,17 +124,11 @@ else:
     API_ID = Config.API_ID
     API_HASH = Config.API_HASH
     AUTHORIZED_CHATS = Config.AUTHORIZED_CHATS
-    BAN_STICKER = Config.BAN_STICKER
-    CASH_API_KEY = Config.CASH_API_KEY
     CERT_PATH = Config.CERT_PATH
     DEL_CMDS = Config.DEL_CMDS
-    EVENT_LOGS = Config.EVENT_LOGS
     LOAD = Config.LOAD
     NO_LOAD = Config.NO_LOAD
     PORT = Config.PORT
-    STRICT_GBAN = Config.STRICT_GBAN
-    SUPPORT_CHAT = Config.SUPPORT_CHAT
-    TIME_API_KEY = Config.TIME_API_KEY
     URL = Config.URL
     WORKERS = Config.WORKERS
     WEBHOOK = Config.WEBHOOK
@@ -172,4 +157,3 @@ from GPSiteInfoBot.modules.helper_funcs.handlers import (
 # make sure the regex handler can take extra kwargs
 tg.CommandHandler = CustomCommandHandler
 tg.MessageHandler = CustomMessageHandler
-
