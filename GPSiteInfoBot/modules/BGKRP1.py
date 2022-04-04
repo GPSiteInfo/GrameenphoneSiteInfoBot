@@ -6,10 +6,7 @@ from telegram.utils.helpers import escape_markdown
 from telegram import ParseMode, Update, InlineKeyboardButton, InlineKeyboardMarkup
 
 SITE_INFO_TEXT = """
-Hello {}, I'm {}. [ ](https://telegra.ph/file/3a093be342d6ff3e77221.jpg)
-I am a group management bot.
-I can manage your group with lots of useful features.
-For commands and help press /help .
+[](https://telegra.ph/file/3a093be342d6ff3e77221.jpg)
 
 📶 Site Code : BGKRP1
 
@@ -27,7 +24,7 @@ dispatcher.run_async
 def bgkrp1(update: Update, context: CallbackContext):
     update.effective_message.reply_text(
             SITE_INFO_TEXT,
-            parse_mode=ParseMode.HTML,
+            parse_mode=ParseMode.MARKDOWN,
             reply_markup=InlineKeyboardMarkup(SITE_LOCATION_BUTTON))
 
 
