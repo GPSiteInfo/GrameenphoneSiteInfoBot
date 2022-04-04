@@ -5,9 +5,9 @@ from telegram.ext import CallbackContext, CommandHandler
 from telegram.utils.helpers import escape_markdown
 from telegram import ParseMode, Update, InlineKeyboardButton, InlineKeyboardMarkup
 
-SITE_INFO_TEXT = """
-[](https://telegra.ph/file/3a093be342d6ff3e77221.jpg)
+Tower_Photo = "https://telegra.ph/file/3a093be342d6ff3e77221.jpg"
 
+SITE_INFO_TEXT = """
 📶 Site Code : BGKRP1
 
 📶 Site Name : Karapara 1
@@ -22,9 +22,7 @@ SITE_LOCATION_BUTTON = [[InlineKeyboardButton(text="🌍 Go to site with maps", 
 
 dispatcher.run_async
 def bgkrp1(update: Update, context: CallbackContext):
-    update.effective_message.reply_text(
-            SITE_INFO_TEXT,
-            parse_mode=ParseMode.HTML,
+    update.effective_message.reply_photo(Tower_Photo, SITE_INFO_TEXT, parse_mode=ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(SITE_LOCATION_BUTTON))
 
 
