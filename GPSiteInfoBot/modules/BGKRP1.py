@@ -2,7 +2,7 @@ from GPSiteInfoBot import dispatcher
 
 
 from telegram.ext.dispatcher import DispatcherHandlerStop, run_async
-from telegram.ext import CallbackContext
+from telegram.ext import CallbackContext, CommandHandler
 from telegram.utils.helpers import escape_markdown
 from telegram import ParseMode, Update
 
