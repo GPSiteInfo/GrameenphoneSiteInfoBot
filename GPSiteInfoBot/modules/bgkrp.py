@@ -8,4 +8,4 @@ GPS Location : (Click Here)[https://www.google.com/maps/dir//22.63861,89.76517/@
 
 ISS_TYPE : Non-shared.
 """
-__mod_name__ = "bgkrp1"
+__mod_name__ = "bgkrp"
