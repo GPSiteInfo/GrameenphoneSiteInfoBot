@@ -4,7 +4,7 @@ from GPSiteInfoBot import dispatcher
 from telegram.ext.dispatcher import DispatcherHandlerStop, run_async
 from telegram.ext import CallbackContext, CommandHandler
 from telegram.utils.helpers import escape_markdown
-from telegram import ParseMode, Update
+from telegram import ParseMode, Update, InlineKeyboardButton, InlineKeyboardMarkup
 
 SITE_INFO_TEXT = """
 📶 Site Code : BGKRP1
@@ -16,7 +16,7 @@ SITE_INFO_TEXT = """
 🌏 Site Location : Karapara, Dashani, Bagerhat.
 """
 
-SITE_LOCATION_BUTTON =  = [[InlineKeyboardButton(text="Go to site with maps", url="https://github.com/Al-Noman-Pro/GPSiteInfoBot"),]
+SITE_LOCATION_BUTTON = [[InlineKeyboardButton(text="Go to site with maps", url="https://www.google.com/maps/place/22%C2%B038'19.0%22N+89%C2%B045'54.6%22E/@22.63861,89.76517,17z?gl=bd"),]
 
 
 dispatcher.run_async
