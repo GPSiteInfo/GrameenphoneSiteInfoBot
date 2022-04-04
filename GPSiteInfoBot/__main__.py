@@ -65,8 +65,7 @@ def get_readable_time(seconds: int) -> str:
 
 PM_START_TEXT = """
 Hello {}, I'm {}. [ ](https://telegra.ph/file/280c5a8940072c0093fcd.jpg)
-I can manage your group with lots of useful features.
-For commands and help press /help .
+I can give you Grameenphone all site information of Bagerhat.
 """
 
 
