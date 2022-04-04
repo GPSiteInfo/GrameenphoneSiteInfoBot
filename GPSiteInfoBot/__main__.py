@@ -197,35 +197,7 @@ def start(update: Update, context: CallbackContext):
             update.effective_message.reply_text(
                 PM_START_TEXT.format(
                     escape_markdown(first_name), escape_markdown(context.bot.first_name)),
-                parse_mode=ParseMode.MARKDOWN,
-                reply_markup=InlineKeyboardMarkup(
-                    [[
-                        InlineKeyboardButton(
-                            text="✅ Add Opimus Prime in your group",
-                            url="t.me/{}?startgroup=true".format(
-                                context.bot.username))
-                    ],
-                     [
-                         InlineKeyboardButton(
-                             text="🚨 Support Group",
-                             url=f"https://t.me/{SUPPORT_CHAT}"),
-                         InlineKeyboardButton(
-                             text="♂ Commands",
-                             callback_data="help_back")
-                    ], 
-                     [
-                         InlineKeyboardButton(
-                             text="📥 Mirror Bot Group ",
-                             url="https://t.me/+WKZqyWNHpLViMmI1"),
-                         InlineKeyboardButton(
-                             text="🔁 Repository",
-                             url="https://github.com/Al-Noman-Pro/GPSiteInfoBot")
-                    ]]))
-    else:           
-        update.effective_message.reply_text(
-            GROUP_START_TEXT,
-            parse_mode=ParseMode.HTML,
-            reply_markup=InlineKeyboardMarkup(GROUP_START_BUTTONS))
+                parse_mode=ParseMode.MARKDOWN)
 
 
 GROUP_START_TEXT = """
