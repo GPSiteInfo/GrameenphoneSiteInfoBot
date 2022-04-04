@@ -24,7 +24,7 @@ dispatcher.run_async
 def bgkrp1(update: Update, context: CallbackContext):
     update.effective_message.reply_text(
             SITE_INFO_TEXT,
-            parse_mode=ParseMode.MARKDOWN,
+            parse_mode=ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(SITE_LOCATION_BUTTON))
 
 
