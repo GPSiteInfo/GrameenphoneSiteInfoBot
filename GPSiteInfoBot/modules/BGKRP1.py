@@ -1,5 +1,7 @@
 from GPSiteInfoBot import dispatcher
 
+from GPSiteInfoBot.modules.helper_func.filters import CustomFilters
+
 from telegram.ext.dispatcher import DispatcherHandlerStop, run_async
 from telegram.ext import CallbackContext, CommandHandler
 from telegram.utils.helpers import escape_markdown
@@ -20,11 +22,10 @@ SITE_INFO_TEXT = """
 SITE_LOCATION_BUTTON = [[InlineKeyboardButton(text="🌍 Go to BGKRP1 site with maps", url="https://www.google.com/maps/place/22%C2%B038'19.0%22N+89%C2%B045'54.6%22E/@22.63861,89.76517,17z?gl=bd"),]]
 
 
-dispatcher.run_async
 def bgkrp1(update: Update, context: CallbackContext):
     update.effective_message.reply_photo(Tower_Photo, SITE_INFO_TEXT, parse_mode=ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(SITE_LOCATION_BUTTON))
 
 
-bkrp1_handler = CommandHandler("bgkrp1", bgkrp1)
+bkrp1_handler = CommandHandler("bgkrp1", bgkrp1, filters=CustomFilters.authorized_user, run_async=True))
 dispatcher.add_handler(bkrp1_handler)
