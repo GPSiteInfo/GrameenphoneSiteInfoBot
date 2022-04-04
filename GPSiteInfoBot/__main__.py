@@ -13,7 +13,6 @@ from GPSiteInfoBot import (
     TOKEN,
     URL,
     WEBHOOK,
-    SUPPORT_CHAT,
     dispatcher,
     StartTime,
     telethn,
