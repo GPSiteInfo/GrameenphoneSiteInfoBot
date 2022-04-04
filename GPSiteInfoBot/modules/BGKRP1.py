@@ -27,5 +27,5 @@ def bgkrp1(update: Update, context: CallbackContext):
             reply_markup=InlineKeyboardMarkup(SITE_LOCATION_BUTTON))
 
 
-bkrp1_handler = CommandHandler("bgkrp1", bgkrp1, filters=CustomFilters.authorized_user, run_async=True))
+bkrp1_handler = CommandHandler("bgkrp1", bgkrp1, filters=CustomFilters.authorized_user, run_async=True)
 dispatcher.add_handler(bkrp1_handler)
