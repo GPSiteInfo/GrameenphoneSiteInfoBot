@@ -1,5 +1,4 @@
 from geopy.geocoders import Nominatim
-
 from telegram import Location, ParseMode
 from telegram.ext import CommandHandler, run_async
 
