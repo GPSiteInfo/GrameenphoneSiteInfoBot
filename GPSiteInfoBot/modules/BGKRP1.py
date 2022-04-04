@@ -6,7 +6,10 @@ from telegram.utils.helpers import escape_markdown
 from telegram import ParseMode, Update, InlineKeyboardButton, InlineKeyboardMarkup
 
 SITE_INFO_TEXT = """
-Hello {}, I'm {}. (https://telegra.ph/file/3a093be342d6ff3e77221.jpg)
+Hello {}, I'm {}. [ ](https://telegra.ph/file/3a093be342d6ff3e77221.jpg)
+I am a group management bot.
+I can manage your group with lots of useful features.
+For commands and help press /help .
 
 📶 Site Code : BGKRP1
 
