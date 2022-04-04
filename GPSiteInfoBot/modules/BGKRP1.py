@@ -15,8 +15,7 @@ dispatcher.run_async
 def bgkrp1(update: Update, context: CallbackContext):
     update.effective_message.reply_text(
             BGKRP1_TEXT,
-            parse_mode=ParseMode.HTML,
-            reply_markup=InlineKeyboardMarkup)
+            parse_mode=ParseMode.HTML)
 
 
 
