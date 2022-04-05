@@ -14,7 +14,7 @@ SITE_INFO_TEXT = """
 
 📶 Site Name: Pobontola Bazar
 
-📶 ISS_TYPE: Non-shared .
+📶 ISS_TYPE: Seeker.
 
 📶 Site Location: Pabontola Bazar, Rampal, Bagerhat.
 
