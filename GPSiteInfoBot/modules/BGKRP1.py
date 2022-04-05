@@ -17,11 +17,9 @@ SITE_INFO_TEXT = """
 📶 ISS_TYPE: Non-shared .
 
 📶 Site Location: Karapara, Dashani, Bagerhat.
-
-📶 Nearby anyone phone number: 
 """
 
-SITE_LOCATION_BUTTON = [[InlineKeyboardButton(text="✳ Go To BGKRP1 Site With Maps", url="https://www.google.com/maps/place/22%C2%B038'19.0%22N+89%C2%B045'54.6%22E/@22.63861,89.76517,17z?gl=bd"),]]
+SITE_LOCATION_BUTTON = [[InlineKeyboardButton(text="✳ Go To BGKRP1 Site With "),]]
 
 
 def bgkrp1(update: Update, context: CallbackContext):
