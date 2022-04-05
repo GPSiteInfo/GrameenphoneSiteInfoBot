@@ -24,7 +24,7 @@ SITE_INFO_TEXT = """
 SITE_LOCATION_BUTTON = [[InlineKeyboardButton(text="✳ Go To BGKML1 Site With Maps", url="https://www.google.com/maps/dir//22.62167,89.68206"),]]
 
 
-def bgkrp1(update: Update, context: CallbackContext):
+def bgkml1(update: Update, context: CallbackContext):
     update.effective_message.reply_photo(Tower_Photo, SITE_INFO_TEXT, parse_mode=ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(SITE_LOCATION_BUTTON))
 
