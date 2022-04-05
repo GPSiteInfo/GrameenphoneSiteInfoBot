@@ -20,7 +20,7 @@ SITE_INFO_TEXT = """
 
 """
 
-SITE_LOCATION_BUTTON = [[InlineKeyboardButton(text="✳ Go To BGKML1 Site With Maps", url="https://www.google.com/maps/dir/22.62167,89.68206"),]]
+SITE_LOCATION_BUTTON = [[InlineKeyboardButton(text="✳ Go To BGKML1 Site With Maps", url="https://www.google.com/maps/place/22%C2%B037'18.0%22N+89%C2%B040'55.4%22E/@22.62167,89.68206,17z?gl=bd")]]
 
 
 def bgkml1(update: Update, context: CallbackContext):
