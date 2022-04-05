@@ -16,7 +16,7 @@ SITE_INFO_TEXT = """
 
 📶 ISS_TYPE: Non-shared .
 
-📶 Site Location: Pobontola Bazar, Rampal, Bagerhat.
+📶 Site Location: Pabontola Bazar, Rampal, Bagerhat.
 
 📶 Nearby anyone phone number: 01910500562
 """
