@@ -18,7 +18,6 @@ SITE_INFO_TEXT = """
 
 📶 Site Location: Pabontola Bazar, Rampal, Bagerhat.
 
-📶 Nearby anyone phone number: 01910500562
 """
 
 SITE_LOCATION_BUTTON = [[InlineKeyboardButton(text="✳ Go To BGKML1 Site With Maps", url="https://www.google.com/maps/dir//22.62167,89.68206"),]]
