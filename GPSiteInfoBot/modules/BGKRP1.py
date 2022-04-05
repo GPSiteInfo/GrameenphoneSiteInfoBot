@@ -19,7 +19,7 @@ SITE_INFO_TEXT = """
 📶 Site Location: Karapara, Dashani, Bagerhat.
 """
 
-SITE_LOCATION_BUTTON = [[InlineKeyboardButton(text="✳ Go To BGKRP1 Site With "),]]
+SITE_LOCATION_BUTTON = [[InlineKeyboardButton(text="✳ Go To BGKRP1 Site With Maps", url="https://www.google.com/maps/place/22%C2%B037'24.3%22N+89%C2%B050'01.6%22E/@22.62342,89.83378,17z?gl=bd)]]
 
 
 def bgkrp1(update: Update, context: CallbackContext):
