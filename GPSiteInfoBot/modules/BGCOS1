@@ -10,17 +10,17 @@ from telegram import ParseMode, Update, InlineKeyboardButton, InlineKeyboardMark
 Tower_Photo = "https://telegra.ph/file/3a093be342d6ff3e77221.jpg"
 
 SITE_INFO_TEXT = """
-馃摱 Site Code: BGCOS1
+📶 Site Code: BGCOS1
 
-馃摱 Site Name: Bagerhat, Costal-1.
+📶 Site Name: Bagerhat, Costal-1.
 
-馃摱 ISS_TYPE: Non-Shared.
+📶 ISS_TYPE: Non-Shared.
 
-馃摱 Site Location: Railroad,Bagerhat. ( Near Bagerhat Stadium ).
+📶 Site Location: Railroad,Bagerhat. ( Near Bagerhat Stadium ).
 
 """
 
-SITE_LOCATION_BUTTON = [[InlineKeyboardButton(text="馃摱 Go To BGCOS1 Site With Maps", url="https://www.google.com/maps/place/22%C2%B039'21.2%22N+89%C2%B047'46.4%22E/@22.6559,89.79623,17z?gl=bd")]]
+SITE_LOCATION_BUTTON = [[InlineKeyboardButton(text="📶 Go To BGCOS1 Site With Maps", url="https://www.google.com/maps/place/22%C2%B039'21.2%22N+89%C2%B047'46.4%22E/@22.6559,89.79623,17z?gl=bd")]]
 
 
 def BGCOS1(update: Update, context: CallbackContext):
