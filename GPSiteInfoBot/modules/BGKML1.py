@@ -12,21 +12,21 @@ Tower_Photo = "https://telegra.ph/file/3a093be342d6ff3e77221.jpg"
 SITE_INFO_TEXT = """
 📶 Site Code: BGKML1
 
-📶 Site Name: Bagerhat, Costal-1.
+📶 Site Name: Pobontola Bazar
 
-📶 ISS_TYPE: Non-Shared.
+📶 ISS_TYPE: Seeker.
 
-📶 Site Location: Railroad,Bagerhat. ( Near Bagerhat Stadium )
+📶 Site Location: Pabontola Bazar, Rampal, Bagerhat.
 
 """
 
-SITE_LOCATION_BUTTON = [[InlineKeyboardButton(text="📶 Go To BGKML1 Site With Maps", url="https://www.google.com/maps/place/22%C2%B039'21.2%22N+89%C2%B047'46.4%22E/@22.6559,89.79623,17z?gl=bd")]]
+SITE_LOCATION_BUTTON = [[InlineKeyboardButton(text="✳ Go To BGKML1 Site With Maps", url="https://www.google.com/maps/place/22%C2%B037'18.0%22N+89%C2%B040'55.4%22E/@22.62167,89.68206,17z?gl=bd")]]
 
 
-def bgkml1(update: Update, context: CallbackContext):
+def BGKML1(update: Update, context: CallbackContext):
     update.effective_message.reply_photo(Tower_Photo, SITE_INFO_TEXT, parse_mode=ParseMode.HTML,
             reply_markup=InlineKeyboardMarkup(SITE_LOCATION_BUTTON))
 
 
-bgkml1_handler = CommandHandler("bgkml1", bgkml1, filters=CustomFilters.authorized_user, run_async=True)
-dispatcher.add_handler(bgkml1_handler)
+BGKML1_handler = CommandHandler("BGKML1", BGKML1, filters=CustomFilters.authorized_user, run_async=True)
+dispatcher.add_handler(BGKML1_handler)
