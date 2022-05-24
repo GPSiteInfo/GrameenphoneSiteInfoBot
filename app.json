@@ -59,7 +59,7 @@
          "value": "-1001648580903"
 	  },
       "JOIN_LOGGER": {
-       "description": "Give a channel id number for saving bot log ",
+        "description": "Give a channel id number for saving bot log ",
          "required": false,
          "value": "-1001157029074"
 	  },
@@ -91,7 +91,7 @@
       "SUPPORT_CHAT": {
          "description": "Your Telegram support group username where your users will go and bother you with shit But be like: MyGroupChatUsernameBlah. If this ever points to atrocious support than consider you made an enemy.",
          "required": true,
-         "value": AtrociousBotSupport""
+         "value": "AtrociousBotSupport"
 	  },
       "SUPPORT_USERS": {
          "description": "A space separated list of user IDs who you wanna assign as support users(gban perms only).",
