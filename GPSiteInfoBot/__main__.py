@@ -10,12 +10,13 @@ from GPSiteInfoBot import (
     LOGGER,
     OWNER_ID,
     PORT,
+    pbot,
     TOKEN,
     URL,
     WEBHOOK,
+    SUPPORT_CHAT,
     dispatcher,
     StartTime,
-    SUPPORT_CHAT,
     telethn,
     updater)
 
@@ -64,8 +65,10 @@ def get_readable_time(seconds: int) -> str:
 
 
 PM_START_TEXT = """
-Hello {}, I'm {}. [ ](https://telegra.ph/file/c063ef61885578d9e7c20.jpg)
-I can give you Grameenphone all site information of Bagerhat.
+Hello {}, I'm {}. [ ](https://telegra.ph/file/b9b8713a3376bea56e6b6.jpg)
+I am a group management bot.
+I can manage your group with lots of useful features.
+For commands and help press /help .
 """
 
 
@@ -196,7 +199,35 @@ def start(update: Update, context: CallbackContext):
             update.effective_message.reply_text(
                 PM_START_TEXT.format(
                     escape_markdown(first_name), escape_markdown(context.bot.first_name)),
-                parse_mode=ParseMode.MARKDOWN)
+                parse_mode=ParseMode.MARKDOWN,
+                reply_markup=InlineKeyboardMarkup(
+                    [[
+                        InlineKeyboardButton(
+                            text="✅ Add Opimus Prime in your group",
+                            url="t.me/{}?startgroup=true".format(
+                                context.bot.username))
+                    ],
+                     [
+                         InlineKeyboardButton(
+                             text="🚨 Support Group",
+                             url=f"https://t.me/{SUPPORT_CHAT}"),
+                         InlineKeyboardButton(
+                             text="♂ Commands",
+                             callback_data="help_back")
+                    ], 
+                     [
+                         InlineKeyboardButton(
+                             text="📥 Mirror Bot Group ",
+                             url="https://t.me/+WKZqyWNHpLViMmI1"),
+                         InlineKeyboardButton(
+                             text="🔁 Repository",
+                             url="https://github.com/Al-Noman-Pro/GPSiteInfoBot")
+                    ]]))
+    else:           
+        update.effective_message.reply_text(
+            GROUP_START_TEXT,
+            parse_mode=ParseMode.HTML,
+            reply_markup=InlineKeyboardMarkup(GROUP_START_BUTTONS))
 
 
 GROUP_START_TEXT = """
@@ -204,9 +235,9 @@ Hi ,I am Optimus Prime Bot.
 I'm a group management bot.
 """
 
-GROUP_START_BUTTONS = [[InlineKeyboardButton(text="☸ Repository", url="https://github.com/Al-Noman-Pro/GPSiteInfoBot"),],
+GROUP_START_BUTTONS = [[InlineKeyboardButton(text="☸ Repository", url="https://github.com/Al-Noman-Pro/GPSiteInfoBot")],
 
-                      [InlineKeyboardButton(text="✅ Add me in your group", url="t.me/GPSiteInfoBot_Pro_Bot?startgroup=true")],]
+                      [InlineKeyboardButton(text="✅ Add me in your group", url="t.me/GPSiteInfoBot_Pro_Bot?startgroup=true")]]
 
 # for test purposes
 def error_callback(update: Update, context: CallbackContext):
@@ -479,6 +510,15 @@ def migrate_chats(update: Update, context: CallbackContext):
 
 def main():
 
+    if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
+        try:
+            dispatcher.bot.sendMessage(f"@{SUPPORT_CHAT}", "I am now online!")
+        except Unauthorized:
+            LOGGER.warning(
+                "Bot isnt able to send message to SUPPORT_CHAT, go support chat group and add bot in admin")
+        except BadRequest as e:
+            LOGGER.warning(e.message)
+
     test_handler = CommandHandler("test", test)
     start_handler = CommandHandler("start", start)
 
@@ -523,6 +563,8 @@ def main():
 
 if __name__ == "__main__":
     LOGGER.info("Successfully loaded modules: " + str(ALL_MODULES))
+    LOGGER.info("Starting Pyrogram")
+    pbot.start()
     LOGGER.info("Starting Telethon")
     telethn.start(bot_token=TOKEN)
     main()
