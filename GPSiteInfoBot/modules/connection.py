@@ -1,5 +1,6 @@
 import time
 import re
+import os
 
 from telegram import ParseMode, InlineKeyboardMarkup, InlineKeyboardButton, Update, Bot
 from telegram.error import BadRequest, Unauthorized
@@ -10,6 +11,7 @@ from GPSiteInfoBot import dispatcher, SUDO_USERS, DEV_USERS
 from GPSiteInfoBot.modules.helper_funcs import chat_status
 from GPSiteInfoBot.modules.helper_funcs.alternate import send_message, typing_action
 
+DB_URI = os.environ.get("DATABASE_URL")
 user_admin = chat_status.user_admin
 
 
