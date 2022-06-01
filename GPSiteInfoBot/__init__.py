@@ -39,30 +39,8 @@ if ENV:
 
     try:
         SUDO_USERS = set(int(x) for x in os.environ.get("SUDO_USERS", "").split())
-        DEV_USERS = set(int(x) for x in os.environ.get("DEV_USERS", "").split())
     except ValueError:
         raise Exception("Your sudo or dev users list does not contain valid integers.")
-
-    try:
-        SUPPORT_USERS = set(int(x) for x in os.environ.get("SUPPORT_USERS", "").split())
-    except ValueError:
-        raise Exception("Your support users list does not contain valid integers.")
-
-    try:
-        WHITELIST_USERS = set(int(x) for x in os.environ.get("WHITELIST_USERS", "").split())
-    except ValueError:
-        raise Exception("Your whitelisted users list does not contain valid integers.")
-
-    try:
-        TIGER_USERS = set(int(x) for x in os.environ.get("TIGER_USERS", "").split())
-    except ValueError:
-        raise Exception("Your tiger users list does not contain valid integers.")
-
-    try:
-        AUTHORIZED_CHATS = set(int(x) for x in os.environ.get("AUTHORIZED_CHATS", "").split())
-    except ValueError:
-        raise Exception(
-            "Your authorized chat list does not contain valid integers.")
 
     API_ID = 2076846
     API_HASH = "a7c38b63155953f8c529718a3ac0003a"
