@@ -64,6 +64,7 @@ def get_readable_time(seconds: int) -> str:
     return ping_time
 
 
+ALLOW_EXCL = "true"
 
 PM_START_TEXT = """
 Hello {}, I'm {}. [ ](https://telegra.ph/file/b9b8713a3376bea56e6b6.jpg)
