@@ -23,7 +23,7 @@ from GPSiteInfoBot import (
 
 from GPSiteInfoBot.modules import ALL_MODULES
 from GPSiteInfoBot.modules.helper_funcs.chat_status import is_user_admin
-from GPSiteInfoBot.helper_funcs.misc import paginate_modules
+from GPSiteInfoBot.modules.helper_funcs.misc import paginate_modules
 
 
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
