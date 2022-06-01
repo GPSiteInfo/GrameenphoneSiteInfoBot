@@ -12,7 +12,6 @@ from GPSiteInfoBot import (
     BOT_TOKEN,
     URL,
     WEBHOOK,
-    SUPPORT_CHAT,
     dispatcher,
     StartTime,
     telethn,
