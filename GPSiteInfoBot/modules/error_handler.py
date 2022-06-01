@@ -8,7 +8,7 @@ import pretty_errors
 import io
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import CallbackContext, CommandHandler
-from GPSiteInfoBot import dispatcher OWNER_ID
+from GPSiteInfoBot import dispatcher, OWNER_ID
 
 pretty_errors.mono()
 
