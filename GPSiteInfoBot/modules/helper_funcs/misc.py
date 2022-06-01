@@ -1,6 +1,6 @@
 import os
 
-fromm typing import Dict, List
+from typing import Dict, List
 
 from telegram import MAX_MESSAGE_LENGTH, Bot, InlineKeyboardButton, ParseMode
 from telegram.error import TelegramError
