@@ -52,6 +52,5 @@ bot = updater.bot
 dispatcher = updater.dispatcher
 
 
-AUTHORIZED_CHATS = list(AUTHORIZED_CHATS)
 SUDO_USERS.add(OWNER_ID)
 SUDO_USERS = list(SUDO_USERS)
