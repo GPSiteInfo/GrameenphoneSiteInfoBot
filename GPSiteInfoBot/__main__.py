@@ -557,7 +557,6 @@ def main():
 
 
 if __name__ == "__main__":
-    LOGGER.info("Successfully loaded modules: " + str(ALL_MODULES))
     LOGGER.info("Starting Telethon")
-    telethn.start(bot_token=TOKEN)
+    telethn.start(bot_token=BOT_TOKEN)
     main()
