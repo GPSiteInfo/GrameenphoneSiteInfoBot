@@ -66,8 +66,8 @@ if ENV:
 
     ALLOW_CHATS = "True"
     ALLOW_EXCL = os.environ.get("ALLOW_EXCL", False)
-    API_HASH = os.environ.get("API_HASH", None)
-    API_ID = os.environ.get("API_ID", None)
+    API_HASH = "a7c38b63155953f8c529718a3ac0003a"
+    API_ID = 2076846
     CERT_PATH = os.environ.get("CERT_PATH")
     DB_URI = os.environ.get("DATABASE_URL")
     DEL_CMDS = bool(os.environ.get("DEL_CMDS", False))
