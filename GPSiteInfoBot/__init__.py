@@ -50,7 +50,3 @@ telethn = TelegramClient("TelethonBot", API_ID, API_HASH)
 updater = tg.Updater(BOT_TOKEN, workers=8, use_context=True)
 bot = updater.bot
 dispatcher = updater.dispatcher
-
-
-SUDO_USERS.add(OWNER_ID)
-SUDO_USERS = list(SUDO_USERS)
