@@ -103,7 +103,7 @@ USER_SETTINGS = {}
 GDPR = []
 
 for module_name in ALL_MODULES:
-    imported_module = importlib.import_module("Optimus_Prime.modules." + module_name)
+    imported_module = importlib.import_module("GPSiteInfoBot.modules." + module_name)
     if not hasattr(imported_module, "__mod_name__"):
         imported_module.__mod_name__ = imported_module.__name__
 
@@ -221,7 +221,7 @@ def start(update: Update, context: CallbackContext):
                              url="https://t.me/+WKZqyWNHpLViMmI1"),
                          InlineKeyboardButton(
                              text="🔁 Repository",
-                             url="https://github.com/Al-Noman-Pro/Optimus_Prime")
+                             url="https://github.com/Al-Noman-Pro/GPSiteInfoBot")
                     ]]))
     else:           
         update.effective_message.reply_text(
@@ -235,9 +235,9 @@ Hi ,I am Optimus Prime Bot.
 I'm a group management bot.
 """
 
-GROUP_START_BUTTONS = [[InlineKeyboardButton(text="☸ Repository", url="https://github.com/Al-Noman-Pro/Optimus_Prime"),],
+GROUP_START_BUTTONS = [[InlineKeyboardButton(text="☸ Repository", url="https://github.com/Al-Noman-Pro/GPSiteInfoBot"),],
 
-                      [InlineKeyboardButton(text="✅ Add me in your group", url="t.me/Optimus_Prime_Pro_Bot?startgroup=true")],]
+                      [InlineKeyboardButton(text="✅ Add me in your group", url="t.me/GPSiteInfoBot_Pro_Bot?startgroup=true")],]
 
 # for test purposes
 def error_callback(update: Update, context: CallbackContext):
