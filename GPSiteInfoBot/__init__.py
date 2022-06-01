@@ -2,7 +2,6 @@ import logging
 import os
 import sys
 import time
-import spamwatch
 import threading
 import telegram.ext as tg
 
