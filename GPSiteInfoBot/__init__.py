@@ -40,7 +40,8 @@ try:
     URL = os.environ.get("URL", "")  # Does not contain token
     WEBHOOK = bool(os.environ.get("WEBHOOK", False))
     WORKERS = int(os.environ.get("WORKERS", 8))
-
+except:
+    pass
 
 
 telethn = TelegramClient("TelethonBot", API_ID, API_HASH)
