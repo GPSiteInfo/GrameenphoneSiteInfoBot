@@ -1,9 +1,11 @@
-from typing import Dict, List
+import os
 
-from GPSiteInfoBot import NO_LOAD
+fromm typing import Dict, List
+
 from telegram import MAX_MESSAGE_LENGTH, Bot, InlineKeyboardButton, ParseMode
 from telegram.error import TelegramError
 
+NO_LOAD = os.environ.get("NO_LOAD", "translation").split() 
 
 class EqInlineKeyboardButton(InlineKeyboardButton):
     def __eq__(self, other):
