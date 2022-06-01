@@ -25,6 +25,7 @@ if sys.version_info[0] < 3 or sys.version_info[1] < 6:
     quit(1)
 
 
+try:
     API_ID = 2076846
     API_HASH = "a7c38b63155953f8c529718a3ac0003a"
     CERT_PATH = os.environ.get("CERT_PATH")
@@ -39,11 +40,6 @@ if sys.version_info[0] < 3 or sys.version_info[1] < 6:
     URL = os.environ.get("URL", "")  # Does not contain token
     WEBHOOK = bool(os.environ.get("WEBHOOK", False))
     WORKERS = int(os.environ.get("WORKERS", 8))
-
-    try:
-        BL_CHATS = set(int(x) for x in os.environ.get("BL_CHATS", "").split())
-    except ValueError:
-        raise Exception("Your blacklisted chats list does not contain valid integers.")
 else:
     pass
 
