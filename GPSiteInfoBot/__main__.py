@@ -64,6 +64,7 @@ def get_readable_time(seconds: int) -> str:
     return ping_time
 
 
+
 PM_START_TEXT = """
 Hello {}, I'm {}. [ ](https://telegra.ph/file/b9b8713a3376bea56e6b6.jpg)
 I am a group management bot.
@@ -72,7 +73,7 @@ For commands and help press /help .
 """
 
 
-HELP_TEXT = """
+HELP_STRINGS = """
 Hey there! My name is *{}*.
 I'm a Hero For Fun and help admins manage their groups. Have a look at the following for an idea of some of \
 the things I can help you with.
@@ -88,7 +89,7 @@ the things I can help you with.
 And the following:
 """.format(
     dispatcher.bot.first_name,
-    "All commands can either be used with /")
+    "" if not ALLOW_EXCL else "All commands can either be used with /")
 
 
 IMPORTED = {}
@@ -103,7 +104,7 @@ USER_SETTINGS = {}
 GDPR = []
 
 for module_name in ALL_MODULES:
-    imported_module = importlib.import_module("GPSiteInfoBot.modules." + module_name)
+    imported_module = importlib.import_module("Optimus_Prime.modules." + module_name)
     if not hasattr(imported_module, "__mod_name__"):
         imported_module.__mod_name__ = imported_module.__name__
 
@@ -141,21 +142,6 @@ for module_name in ALL_MODULES:
         USER_SETTINGS[imported_module.__mod_name__.lower()] = imported_module
 
 
-HELP_STRINGS = """
-Hey there! My name is *{}*.
-I'm a Hero For Fun and help admins manage their groups. Have a look at the following for an idea of some of \
-the things I can help you with.
-
-*Main* commands available:
- • /help: PM's you this message.
- • /help <module name>: PM's you info about that module.
-
-{}
-And the following:
-""".format(
-    dispatcher.bot.first_name,
-    "All commands can either be used with /")
-
 # do not async
 def send_help(chat_id, text, keyboard=None):
     if not keyboard:
@@ -165,6 +151,123 @@ def send_help(chat_id, text, keyboard=None):
         text=text,
         parse_mode=ParseMode.MARKDOWN,
         reply_markup=keyboard)
+
+
+dispatcher.run_async
+def test(update: Update, context: CallbackContext):
+    # pprint(eval(str(update)))
+    # update.effective_message.reply_text("Hola tester! _I_ *have* `markdown`", parse_mode=ParseMode.MARKDOWN)
+    update.effective_message.reply_text("This person edited a message")
+    print(update.effective_message)
+
+
+dispatcher.run_async
+def start(update: Update, context: CallbackContext):
+    args = context.args
+    uptime = get_readable_time((time.time() - StartTime))
+    if update.effective_chat.type == "private":
+        if len(args) >= 1:
+            if args[0].lower() == "help":
+                send_help(update.effective_chat.id, HELP_STRINGS)
+            elif args[0].lower().startswith("ghelp_"):
+                mod = args[0].lower().split("_", 1)[1]
+                if not HELPABLE.get(mod, False):
+                    return
+                send_help(
+                    update.effective_chat.id,
+                    HELPABLE[mod].__help__,
+                    InlineKeyboardMarkup(
+                        [[InlineKeyboardButton(text="Back", callback_data="help_back")]]))
+            elif args[0].lower() == "markdownhelp":
+                IMPORTED["extras"].markdown_help_sender(update)
+            elif args[0].lower() == "disasters":
+                IMPORTED["disasters"].send_disasters(update)
+            elif args[0].lower().startswith("stngs_"):
+                match = re.match("stngs_(.*)", args[0].lower())
+                chat = dispatcher.bot.getChat(match.group(1))
+
+                if is_user_admin(chat, update.effective_user.id):
+                    send_settings(match.group(1), update.effective_user.id, False)
+                else:
+                    send_settings(match.group(1), update.effective_user.id, True)
+
+            elif args[0][1:].isdigit() and "rules" in IMPORTED:
+                IMPORTED["rules"].send_rules(update, args[0], from_pm=True)
+
+        else:
+            first_name = update.effective_user.first_name
+            last_name = update.effective_user.last_name
+            update.effective_message.reply_text(
+                PM_START_TEXT.format(
+                    escape_markdown(first_name), escape_markdown(context.bot.first_name)),
+                parse_mode=ParseMode.MARKDOWN,
+                reply_markup=InlineKeyboardMarkup(
+                    [[
+                        InlineKeyboardButton(
+                            text="✅ Add Opimus Prime in your group",
+                            url="t.me/{}?startgroup=true".format(
+                                context.bot.username))
+                    ],
+                     [
+                         InlineKeyboardButton(
+                             text="🚨 Support Group",
+                             url=f"https://t.me/{SUPPORT_CHAT}"),
+                         InlineKeyboardButton(
+                             text="♂ Commands",
+                             callback_data="help_back")
+                    ], 
+                     [
+                         InlineKeyboardButton(
+                             text="📥 Mirror Bot Group ",
+                             url="https://t.me/+WKZqyWNHpLViMmI1"),
+                         InlineKeyboardButton(
+                             text="🔁 Repository",
+                             url="https://github.com/Al-Noman-Pro/Optimus_Prime")
+                    ]]))
+    else:           
+        update.effective_message.reply_text(
+            GROUP_START_TEXT,
+            parse_mode=ParseMode.HTML,
+            reply_markup=InlineKeyboardMarkup(GROUP_START_BUTTONS))
+
+
+GROUP_START_TEXT = """
+Hi ,I am Optimus Prime Bot.
+I'm a group management bot.
+"""
+
+GROUP_START_BUTTONS = [[InlineKeyboardButton(text="☸ Repository", url="https://github.com/Al-Noman-Pro/Optimus_Prime"),],
+
+                      [InlineKeyboardButton(text="✅ Add me in your group", url="t.me/Optimus_Prime_Pro_Bot?startgroup=true")],]
+
+# for test purposes
+def error_callback(update: Update, context: CallbackContext):
+    error = context.error
+    try:
+        raise error
+    except Unauthorized:
+        print("no nono1")
+        print(error)
+        # remove update.message.chat_id from conversation list
+    except BadRequest:
+        print("no nono2")
+        print("BadRequest caught")
+        print(error)
+
+        # handle malformed requests - read more below!
+    except TimedOut:
+        print("no nono3")
+        # handle slow connection problems
+    except NetworkError:
+        print("no nono4")
+        # handle other connection problems
+    except ChatMigrated as err:
+        print("no nono5")
+        print(err)
+        # the chat_id of a group has changed, use e.new_chat_id instead
+    except TelegramError:
+        print(error)
+        # handle all other telegram related errors
 
 
 dispatcher.run_async
@@ -262,113 +365,148 @@ def get_help(update: Update, context: CallbackContext):
         send_help(chat.id, HELP_STRINGS)
 
 
-dispatcher.run_async
-def start(update: Update, context: CallbackContext):
-    args = context.args
-    uptime = get_readable_time((time.time() - StartTime))
-    if update.effective_chat.type == "private":
-        if len(args) >= 1:
-            if args[0].lower() == "help":
-                send_help(update.effective_chat.id, HELP_TEXT)
-            elif args[0].lower().startswith("ghelp_"):
-                mod = args[0].lower().split("_", 1)[1]
-                if not HELPABLE.get(mod, False):
-                    return
-                send_help(
-                    update.effective_chat.id,
-                    HELPABLE[mod].__help__,
-                    InlineKeyboardMarkup(
-                        [[InlineKeyboardButton(text="Back", callback_data="help_back")]]))
-            elif args[0].lower() == "markdownhelp":
-                IMPORTED["extras"].markdown_help_sender(update)
-            elif args[0].lower() == "disasters":
-                IMPORTED["disasters"].send_disasters(update)
-            elif args[0].lower().startswith("stngs_"):
-                match = re.match("stngs_(.*)", args[0].lower())
-                chat = dispatcher.bot.getChat(match.group(1))
-
-                if is_user_admin(chat, update.effective_user.id):
-                    send_settings(match.group(1), update.effective_user.id, False)
-                else:
-                    send_settings(match.group(1), update.effective_user.id, True)
-
-            elif args[0][1:].isdigit() and "rules" in IMPORTED:
-                IMPORTED["rules"].send_rules(update, args[0], from_pm=True)
+def send_settings(chat_id, user_id, user=False):
+    if user:
+        if USER_SETTINGS:
+            settings = "\n\n".join(
+                "*{}*:\n{}".format(mod.__mod_name__, mod.__user_settings__(user_id))
+                for mod in USER_SETTINGS.values())
+            dispatcher.bot.send_message(
+                user_id,
+                "These are your current settings:" + "\n\n" + settings,
+                parse_mode=ParseMode.MARKDOWN)
 
         else:
-            first_name = update.effective_user.first_name
-            last_name = update.effective_user.last_name
-            update.effective_message.reply_text(
-                PM_START_TEXT.format(
-                    escape_markdown(first_name), escape_markdown(context.bot.first_name)),
+            dispatcher.bot.send_message(
+                user_id,
+                "Seems like there aren't any user specific settings available :'(",
+                parse_mode=ParseMode.MARKDOWN)
+
+    else:
+        if CHAT_SETTINGS:
+            chat_name = dispatcher.bot.getChat(chat_id).title
+            dispatcher.bot.send_message(
+                user_id,
+                text="Which module would you like to check {}'s settings for?".format(
+                    chat_name),
+                reply_markup=InlineKeyboardMarkup(
+                    paginate_modules(0, CHAT_SETTINGS, "stngs", chat=chat_id)))
+        else:
+            dispatcher.bot.send_message(
+                user_id,
+                "Seems like there aren't any chat settings available :'(\nSend this "
+                "in a group chat you're admin in to find its current settings!",
+                parse_mode=ParseMode.MARKDOWN)
+
+
+dispatcher.run_async
+def settings_button(update: Update, context: CallbackContext):
+    query = update.callback_query
+    user = update.effective_user
+    bot = context.bot
+    mod_match = re.match(r"stngs_module\((.+?),(.+?)\)", query.data)
+    prev_match = re.match(r"stngs_prev\((.+?),(.+?)\)", query.data)
+    next_match = re.match(r"stngs_next\((.+?),(.+?)\)", query.data)
+    back_match = re.match(r"stngs_back\((.+?)\)", query.data)
+    try:
+        if mod_match:
+            chat_id = mod_match.group(1)
+            module = mod_match.group(2)
+            chat = bot.get_chat(chat_id)
+            text = "*{}* has the following settings for the *{}* module:\n\n".format(
+                escape_markdown(chat.title), CHAT_SETTINGS[module].__mod_name__) + CHAT_SETTINGS[module].__chat_settings__(chat_id, user.id)
+            query.message.reply_text(
+                text=text,
                 parse_mode=ParseMode.MARKDOWN,
                 reply_markup=InlineKeyboardMarkup(
-                    [[
-                        InlineKeyboardButton(
-                            text="✅ Add Opimus Prime in your group",
-                            url="t.me/{}?startgroup=true".format(
-                                context.bot.username))
-                    ],
-                     [
-                         InlineKeyboardButton(
-                             text="🚨 Support Group",
-                             url=f"https://t.me/{SUPPORT_CHAT}"),
-                         InlineKeyboardButton(
-                             text="♂ Commands",
-                             callback_data="help_back")
-                    ], 
-                     [
-                         InlineKeyboardButton(
-                             text="📥 Mirror Bot Group ",
-                             url="https://t.me/+Xwwi7toV4YsyMWJl"),
-                         InlineKeyboardButton(
-                             text="🔁 Repository",
-                             url="https://github.com")
-                    ]]))
-    else:           
-        update.effective_message.reply_text(
-            GROUP_START_TEXT,
-            parse_mode=ParseMode.HTML,
-            reply_markup=InlineKeyboardMarkup(GROUP_START_BUTTONS))
+                    [[InlineKeyboardButton(
+                                text="Back",
+                                callback_data="stngs_back({})".format(chat_id))]]))
+
+        elif prev_match:
+            chat_id = prev_match.group(1)
+            curr_page = int(prev_match.group(2))
+            chat = bot.get_chat(chat_id)
+            query.message.reply_text(
+                "Hi there! There are quite a few settings for {} - go ahead and pick what "
+                "you're interested in.".format(chat.title),
+                reply_markup=InlineKeyboardMarkup(
+                    paginate_modules(
+                        curr_page - 1, CHAT_SETTINGS, "stngs", chat=chat_id)))
+
+        elif next_match:
+            chat_id = next_match.group(1)
+            next_page = int(next_match.group(2))
+            chat = bot.get_chat(chat_id)
+            query.message.reply_text(
+                "Hi there! There are quite a few settings for {} - go ahead and pick what "
+                "you're interested in.".format(chat.title),
+                reply_markup=InlineKeyboardMarkup(
+                    paginate_modules(
+                        next_page + 1, CHAT_SETTINGS, "stngs", chat=chat_id)))
+
+        elif back_match:
+            chat_id = back_match.group(1)
+            chat = bot.get_chat(chat_id)
+            query.message.reply_text(
+                text="Hi there! There are quite a few settings for {} - go ahead and pick what "
+                "you're interested in.".format(escape_markdown(chat.title)),
+                parse_mode=ParseMode.MARKDOWN,
+                reply_markup=InlineKeyboardMarkup(
+                    paginate_modules(0, CHAT_SETTINGS, "stngs", chat=chat_id)))
+
+        # ensure no spinny white circle
+        bot.answer_callback_query(query.id)
+        query.message.delete()
+    except BadRequest as excp:
+        if excp.message not in [
+            "Message is not modified",
+            "Query_id_invalid",
+            "Message can't be deleted"]:
+            LOGGER.exception("Exception in settings buttons. %s", str(query.data))
 
 
-GROUP_START_TEXT = """
-Hi ,I am Optimus Prime Bot.
-I'm a group management bot.
-"""
+dispatcher.run_async
+def get_settings(update: Update, context: CallbackContext):
+    chat = update.effective_chat  # type: Optional[Chat]
+    user = update.effective_user  # type: Optional[User]
+    msg = update.effective_message  # type: Optional[Message]
 
-GROUP_START_BUTTONS = [[InlineKeyboardButton(text="☸ Repository", url="https://github.com/Al-Noman-Pro/GPSiteInfoBot")],
+    # ONLY send settings in PM
+    if chat.type != chat.PRIVATE:
+        if is_user_admin(chat, user.id):
+            text = "Click here to get this chat's settings, as well as yours."
+            msg.reply_text(
+                text,
+                reply_markup=InlineKeyboardMarkup(
+                    [[InlineKeyboardButton(
+                                text="Settings",
+                                url="t.me/{}?start=stngs_{}".format(
+                                    context.bot.username, chat.id))]]))
+        else:
+            text = "Click here to check your settings."
 
-                      [InlineKeyboardButton(text="✅ Add me in your group", url="t.me/GPSiteInfoBot_Pro_Bot?startgroup=true")]]
+    else:
+        send_settings(chat.id, user.id, True)
 
-# for test purposes
-def error_callback(update: Update, context: CallbackContext):
-    error = context.error
-    try:
-        raise error
-    except Unauthorized:
-        print("no nono1")
-        print(error)
-        # remove update.message.chat_id from conversation list
-    except BadRequest:
-        print("no nono2")
-        print("BadRequest caught")
-        print(error)
 
-        # handle malformed requests - read more below!
-    except TimedOut:
-        print("no nono3")
-        # handle slow connection problems
-    except NetworkError:
-        print("no nono4")
-        # handle other connection problems
-    except ChatMigrated as err:
-        print("no nono5")
-        print(err)
-        # the chat_id of a group has changed, use e.new_chat_id instead
-    except TelegramError:
-        print(error)
-        # handle all other telegram related errors
+def migrate_chats(update: Update, context: CallbackContext):
+    msg = update.effective_message  # type: Optional[Message]
+    if msg.migrate_to_chat_id:
+        old_chat = update.effective_chat.id
+        new_chat = msg.migrate_to_chat_id
+    elif msg.migrate_from_chat_id:
+        old_chat = msg.migrate_from_chat_id
+        new_chat = update.effective_chat.id
+    else:
+        return
+
+    LOGGER.info("Migrating from %s, to %s", str(old_chat), str(new_chat))
+    for mod in MIGRATEABLE:
+        mod.__migrate__(old_chat, new_chat)
+
+    LOGGER.info("Successfully migrated!")
+    raise DispatcherHandlerStop
 
 
 def main():
