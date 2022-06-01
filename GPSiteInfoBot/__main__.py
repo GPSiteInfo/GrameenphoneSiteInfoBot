@@ -10,7 +10,7 @@ from GPSiteInfoBot import (
     LOGGER,
     OWNER_ID,
     PORT,
-    TOKEN,
+    BOT_TOKEN,
     URL,
     WEBHOOK,
     SUPPORT_CHAT,
@@ -21,10 +21,9 @@ from GPSiteInfoBot import (
 
 # needed to dynamically load modules
 # NOTE: Module order is not guaranteed, specify that in the config file!
-from GPSiteInfoBot.modules import ALL_MODULES
-from GPSiteInfoBot.modules.helper_funcs.chat_status import is_user_admin
-from GPSiteInfoBot.modules.helper_funcs.misc import paginate_modules
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
+from telegram.ext.dispatcher import DispatcherHandlerStop, run_async
+from telegram.utils.helpers import escape_markdown
 from telegram.error import (BadRequest, ChatMigrated, NetworkError, TelegramError, TimedOut, Unauthorized)
 
 from telegram.ext import (
@@ -33,9 +32,6 @@ from telegram.ext import (
     CommandHandler,
     Filters,
     MessageHandler)
-
-from telegram.ext.dispatcher import DispatcherHandlerStop, run_async
-from telegram.utils.helpers import escape_markdown
 
 
 def get_readable_time(seconds: int) -> str:
