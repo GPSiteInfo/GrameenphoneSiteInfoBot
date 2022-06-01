@@ -64,10 +64,8 @@ if ENV:
         raise Exception(
             "Your authorized chat list does not contain valid integers.")
 
-    ALLOW_CHATS = "True"
-    ALLOW_EXCL = os.environ.get("ALLOW_EXCL", False)
-    API_HASH = "a7c38b63155953f8c529718a3ac0003a"
     API_ID = 2076846
+    API_HASH = "a7c38b63155953f8c529718a3ac0003a"
     CERT_PATH = os.environ.get("CERT_PATH")
     DB_URI = os.environ.get("DATABASE_URL")
     DEL_CMDS = bool(os.environ.get("DEL_CMDS", False))
