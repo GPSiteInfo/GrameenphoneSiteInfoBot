@@ -14,6 +14,7 @@ from GPSiteInfoBot import (
     WEBHOOK,
     dispatcher,
     StartTime,
+    SUPPORT_CHAT,
     telethn,
     updater)
 
