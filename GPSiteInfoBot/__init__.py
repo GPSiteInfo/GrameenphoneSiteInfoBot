@@ -40,7 +40,7 @@ try:
     URL = os.environ.get("URL", "")  # Does not contain token
     WEBHOOK = bool(os.environ.get("WEBHOOK", False))
     WORKERS = int(os.environ.get("WORKERS", 8))
-else:
+except
     pass
 
 
@@ -51,14 +51,10 @@ bot = updater.bot
 dispatcher = updater.dispatcher
 
 SUDO_USERS.add(OWNER_ID)
-DEV_USERS.add(OWNER_ID)
+
 
 AUTHORIZED_CHATS = list(AUTHORIZED_CHATS)
-SUDO_USERS = list(SUDO_USERS) + list(DEV_USERS)
-DEV_USERS = list(DEV_USERS)
-WHITELIST_USERS = list(WHITELIST_USERS)
-SUPPORT_USERS = list(SUPPORT_USERS)
-TIGER_USERS = list(TIGER_USERS)
+SUDO_USERS = list(SUDO_USERS)
 
 # Load at end to ensure all prev variables have been set
 from GPSiteInfoBot.modules.helper_funcs.handlers import (
