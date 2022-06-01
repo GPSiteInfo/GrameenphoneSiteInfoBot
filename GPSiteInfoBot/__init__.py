@@ -30,12 +30,12 @@ try:
     API_HASH = "a7c38b63155953f8c529718a3ac0003a"
     BOT_TOKEN = "5022788742:AAEk4DvdxA1mfBbPFs8xvB65rbJJq1YKBlE"
     CERT_PATH = os.environ.get("CERT_PATH")
-    DB_URI = os.environ.get("DATABASE_URL")
     DEL_CMDS = bool(os.environ.get("DEL_CMDS", False))
     EVENT_LOGS = os.environ.get("EVENT_LOGS", None)
     INFOPIC = bool(os.environ.get("INFOPIC", False))
     LOAD = os.environ.get("LOAD", "").split()
     NO_LOAD = os.environ.get("NO_LOAD", "translation").split()
+    OWNER_ID = os.environ.get("OWNER_ID", None)
     PORT = int(os.environ.get("PORT", 5000))
     SUPPORT_CHAT = os.environ.get("SUPPORT_CHAT", None)
     URL = os.environ.get("URL", "")  # Does not contain token
