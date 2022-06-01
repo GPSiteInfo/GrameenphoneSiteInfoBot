@@ -24,23 +24,6 @@ if sys.version_info[0] < 3 or sys.version_info[1] < 6:
         "You MUST have a python version of at least 3.6! Multiple features depend on this. Bot quitting.")
     quit(1)
 
-ENV = bool(os.environ.get("ENV", False))
-
-if ENV:
-    TOKEN = os.environ.get("TOKEN", None)
-
-    try:
-        OWNER_ID = int(os.environ.get("OWNER_ID", None))
-    except ValueError:
-        raise Exception("Your OWNER_ID env variable is not a valid integer.")
-
-    JOIN_LOGGER = os.environ.get("JOIN_LOGGER", None)
-    OWNER_USERNAME = os.environ.get("OWNER_USERNAME", None)
-
-    try:
-        SUDO_USERS = set(int(x) for x in os.environ.get("SUDO_USERS", "").split())
-    except ValueError:
-        raise Exception("Your sudo or dev users list does not contain valid integers.")
 
     API_ID = 2076846
     API_HASH = "a7c38b63155953f8c529718a3ac0003a"
