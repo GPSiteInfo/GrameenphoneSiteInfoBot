@@ -20,6 +20,12 @@ from GPSiteInfoBot import (
 
 # needed to dynamically load modules
 # NOTE: Module order is not guaranteed, specify that in the config file!
+
+from GPSiteInfoBot.modules import ALL_MODULES
+from GPSiteInfoBot.modules.helper_funcs.chat_status import is_user_admin
+from GPSiteInfoBot.helper_funcs.misc import paginate_modules
+
+
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
 from telegram.ext.dispatcher import DispatcherHandlerStop, run_async
 from telegram.utils.helpers import escape_markdown
