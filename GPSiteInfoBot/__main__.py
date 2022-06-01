@@ -5,6 +5,7 @@ from sys import argv
 from typing import Optional
 
 from GPSiteInfoBot import (
+    ALLOW_EXCL,
     CERT_PATH,
     LOGGER,
     OWNER_ID,
@@ -12,23 +13,18 @@ from GPSiteInfoBot import (
     BOT_TOKEN,
     URL,
     WEBHOOK,
+    SUPPORT_CHAT,
     dispatcher,
     StartTime,
-    SUPPORT_CHAT,
     telethn,
     updater)
 
 # needed to dynamically load modules
 # NOTE: Module order is not guaranteed, specify that in the config file!
-
 from GPSiteInfoBot.modules import ALL_MODULES
 from GPSiteInfoBot.modules.helper_funcs.chat_status import is_user_admin
 from GPSiteInfoBot.modules.helper_funcs.misc import paginate_modules
-
-
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, ParseMode, Update
-from telegram.ext.dispatcher import DispatcherHandlerStop, run_async
-from telegram.utils.helpers import escape_markdown
 from telegram.error import (BadRequest, ChatMigrated, NetworkError, TelegramError, TimedOut, Unauthorized)
 
 from telegram.ext import (
@@ -37,6 +33,9 @@ from telegram.ext import (
     CommandHandler,
     Filters,
     MessageHandler)
+
+from telegram.ext.dispatcher import DispatcherHandlerStop, run_async
+from telegram.utils.helpers import escape_markdown
 
 
 def get_readable_time(seconds: int) -> str:
@@ -88,7 +87,7 @@ the things I can help you with.
 And the following:
 """.format(
     dispatcher.bot.first_name,
-    "All commands can either be used with /")
+    "" if not ALLOW_EXCL else "All commands can either be used with /")
 
 
 IMPORTED = {}
@@ -510,14 +509,35 @@ def migrate_chats(update: Update, context: CallbackContext):
 
 def main():
 
+    if SUPPORT_CHAT is not None and isinstance(SUPPORT_CHAT, str):
+        try:
+            dispatcher.bot.sendMessage(f"@{SUPPORT_CHAT}", "I am now online!")
+        except Unauthorized:
+            LOGGER.warning(
+                "Bot isnt able to send message to SUPPORT_CHAT, go support chat group and add bot in admin")
+        except BadRequest as e:
+            LOGGER.warning(e.message)
+
+    test_handler = CommandHandler("test", test)
     start_handler = CommandHandler("start", start)
+
     help_handler = CommandHandler("help", get_help)
     help_callback_handler = CallbackQueryHandler(help_button, pattern=r"help_.*")
 
+    settings_handler = CommandHandler("settings", get_settings)
+    settings_callback_handler = CallbackQueryHandler(settings_button, pattern=r"stngs_")
+
+    migrate_handler = MessageHandler(Filters.status_update.migrate, migrate_chats)
+
+    # dispatcher.add_handler(test_handler)
     dispatcher.add_handler(start_handler)
-    dispatcher.add_error_handler(error_callback)
     dispatcher.add_handler(help_handler)
+    dispatcher.add_handler(settings_handler)
     dispatcher.add_handler(help_callback_handler)
+    dispatcher.add_handler(settings_callback_handler)
+    dispatcher.add_handler(migrate_handler)
+
+    dispatcher.add_error_handler(error_callback)
 
     if WEBHOOK:
         LOGGER.info("Using webhooks.")
@@ -541,6 +561,7 @@ def main():
 
 
 if __name__ == "__main__":
+    LOGGER.info("Successfully loaded modules: " + str(ALL_MODULES))
     LOGGER.info("Starting Telethon")
     telethn.start(bot_token=BOT_TOKEN)
     main()
