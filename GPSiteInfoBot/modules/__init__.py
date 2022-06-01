@@ -1,5 +1,9 @@
-from GPSiteInfoBot import LOAD, LOGGER, NO_LOAD
+import os
 
+from GPSiteInfoBot import LOGGER
+
+LOAD = os.environ.get("LOAD", "").split()
+NO_LOAD = os.environ.get("NO_LOAD", "translation").split()
 
 def __list_all_modules():
     import glob
