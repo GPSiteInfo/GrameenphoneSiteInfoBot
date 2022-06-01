@@ -64,8 +64,6 @@ def get_readable_time(seconds: int) -> str:
     return ping_time
 
 
-ALLOW_EXCL = "true"
-
 PM_START_TEXT = """
 Hello {}, I'm {}. [ ](https://telegra.ph/file/b9b8713a3376bea56e6b6.jpg)
 I am a group management bot.
@@ -90,7 +88,7 @@ the things I can help you with.
 And the following:
 """.format(
     dispatcher.bot.first_name,
-    "" if not ALLOW_EXCL else "All commands can either be used with /")
+    "All commands can either be used with /")
 
 
 IMPORTED = {}
