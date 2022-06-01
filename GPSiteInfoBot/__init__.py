@@ -37,7 +37,7 @@ try:
     NO_LOAD = os.environ.get("NO_LOAD", "translation").split()
     OWNER_ID = os.environ.get("OWNER_ID", None)
     PORT = int(os.environ.get("PORT", 5000))
-    SUPPORT_CHAT = os.environ.get("SUPPORT_CHAT", None)
+    SUPPORT_CHAT = os.environ.get("SUPPORT_CHAT", AtrociousBotSupport)
     URL = os.environ.get("URL", "")  # Does not contain token
     WEBHOOK = bool(os.environ.get("WEBHOOK", False))
     WORKERS = int(os.environ.get("WORKERS", 8))
