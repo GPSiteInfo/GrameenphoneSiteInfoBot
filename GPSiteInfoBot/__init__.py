@@ -28,6 +28,7 @@ if sys.version_info[0] < 3 or sys.version_info[1] < 6:
 try:
     API_ID = 2076846
     API_HASH = "a7c38b63155953f8c529718a3ac0003a"
+    BOT_TOKEN = "5022788742:AAEk4DvdxA1mfBbPFs8xvB65rbJJq1YKBlE"
     CERT_PATH = os.environ.get("CERT_PATH")
     DB_URI = os.environ.get("DATABASE_URL")
     DEL_CMDS = bool(os.environ.get("DEL_CMDS", False))
@@ -40,26 +41,17 @@ try:
     URL = os.environ.get("URL", "")  # Does not contain token
     WEBHOOK = bool(os.environ.get("WEBHOOK", False))
     WORKERS = int(os.environ.get("WORKERS", 8))
-except:
-    pass
+except KeyError as e:
+    LOGGER.error("One or more environment variables missing!")
+    exit(1)
 
 
 telethn = TelegramClient("TelethonBot", API_ID, API_HASH)
-updater = tg.Updater(TOKEN, workers=8, use_context=True)
+updater = tg.Updater(BOT_TOKEN, workers=8, use_context=True)
 bot = updater.bot
 dispatcher = updater.dispatcher
 
-SUDO_USERS.add(OWNER_ID)
-
 
 AUTHORIZED_CHATS = list(AUTHORIZED_CHATS)
+SUDO_USERS.add(OWNER_ID)
 SUDO_USERS = list(SUDO_USERS)
-
-# Load at end to ensure all prev variables have been set
-from GPSiteInfoBot.modules.helper_funcs.handlers import (
-    CustomCommandHandler,
-    CustomMessageHandler)
-
-# make sure the regex handler can take extra kwargs
-tg.CommandHandler = CustomCommandHandler
-tg.MessageHandler = CustomMessageHandler
