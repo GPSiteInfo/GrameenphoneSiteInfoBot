@@ -70,31 +70,6 @@ def log_user(update: Update, context: CallbackContext):
 
 
 dispatcher.run_async
-@sudo_plus
-def chats(update: Update, context: CallbackContext):
-    all_chats = sql.get_all_chats() or []
-    chatfile = "List of chats.\n0. Chat name | Chat ID | Members count\n"
-    P = 1
-    for chat in all_chats:
-        try:
-            curr_chat = context.bot.getChat(chat.chat_id)
-            bot_member = curr_chat.get_member(context.bot.id)
-            chat_members = curr_chat.get_member_count(context.bot.id)
-            chatfile += "{}. {} | {} | {}\n".format(
-                P, chat.chat_name, chat.chat_id, chat_members)
-            P = P + 1
-        except:
-            pass
-
-    with BytesIO(str.encode(chatfile)) as output:
-        output.name = "groups_list.txt"
-        update.effective_message.reply_document(
-            document=output,
-            filename="groups_list.txt",
-            caption="Here be the list of groups in my database.")
-
-
-dispatcher.run_async
 def chat_checker(update: Update, context: CallbackContext):
     bot = context.bot
     try:
@@ -123,17 +98,3 @@ def __migrate__(old_chat_id, new_chat_id):
 
 __help__ = ""  # no help string
 
-BROADCAST_HANDLER = CommandHandler(
-    ["broadcastall", "broadcastusers", "broadcastgroups"], broadcast,
-)
-USER_HANDLER = MessageHandler(Filters.all & Filters.chat_type.groups, log_user)
-CHAT_CHECKER_HANDLER = MessageHandler(Filters.all & Filters.chat_type.groups, chat_checker)
-CHATLIST_HANDLER = CommandHandler("groups", chats)
-
-dispatcher.add_handler(USER_HANDLER, USERS_GROUP)
-dispatcher.add_handler(BROADCAST_HANDLER)
-dispatcher.add_handler(CHATLIST_HANDLER)
-dispatcher.add_handler(CHAT_CHECKER_HANDLER, CHAT_GROUP)
-
-__mod_name__ = "Users"
-__handlers__ = [(USER_HANDLER, USERS_GROUP), BROADCAST_HANDLER, CHATLIST_HANDLER]
