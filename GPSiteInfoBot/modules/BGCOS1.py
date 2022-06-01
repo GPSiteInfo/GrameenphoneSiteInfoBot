@@ -28,5 +28,5 @@ def BGCOS1(update: Update, context: CallbackContext):
             reply_markup=InlineKeyboardMarkup(SITE_LOCATION_BUTTON))
 
 
-BGCOS1_handler = CommandHandler("BGCOS1", BGCOS1, filters=CustomFilters.authorized_user, run_async=True)
+BGCOS1_handler = CommandHandler("BGCOS1", BGCOS1, run_async=True)
 dispatcher.add_handler(BGCOS1_handler)
