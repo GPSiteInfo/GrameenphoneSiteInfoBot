@@ -35,7 +35,6 @@ try:
     SUPPORT_CHAT = os.environ.get("SUPPORT_CHAT", "AtrociousBotSupport")
     URL = os.environ.get("URL", "")  # Does not contain token
     WEBHOOK = bool(os.environ.get("WEBHOOK", False))
-    WORKERS = int(os.environ.get("WORKERS", 8))
 except KeyError as e:
     LOGGER.error("One or more environment variables missing!")
     exit(1)
