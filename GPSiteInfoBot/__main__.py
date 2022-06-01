@@ -155,10 +155,10 @@ def start(update: Update, context: CallbackContext):
                      [
                          InlineKeyboardButton(
                              text="📥 Mirror Bot Group ",
-                             url="https://t.me/+WKZqyWNHpLViMmI1"),
+                             url="https://t.me/+Xwwi7toV4YsyMWJl"),
                          InlineKeyboardButton(
                              text="🔁 Repository",
-                             url="https://github.com/Al-Noman-Pro/GPSiteInfoBot")
+                             url="https://github.com")
                     ]]))
     else:           
         update.effective_message.reply_text(
