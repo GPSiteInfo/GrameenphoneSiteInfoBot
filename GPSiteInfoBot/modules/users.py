@@ -12,13 +12,11 @@ from telegram.ext import (
 )
 
 import GPSiteInfoBot.modules.sql.users_sql as sql
-from GPSiteInfoBot import DEV_USERS, LOGGER, OWNER_ID, dispatcher
-from GPSiteInfoBot.modules.helper_funcs.chat_status import dev_plus, sudo_plus
+from GPSiteInfoBot import LOGGER, OWNER_ID, dispatcher
 from GPSiteInfoBot.modules.sql.users_sql import get_all_users
 
 USERS_GROUP = 4
 CHAT_GROUP = 5
-DEV_AND_MORE = DEV_USERS.append(int(OWNER_ID))
 
 
 def get_user_id(username):
@@ -51,48 +49,6 @@ def get_user_id(username):
                     LOGGER.exception("Error extracting user ID")
 
     return None
-
-
-dispatcher.run_async
-@dev_plus
-def broadcast(update: Update, context: CallbackContext):
-    to_send = update.effective_message.text.split(None, 1)
-
-    if len(to_send) >= 2:
-        to_group = False
-        to_user = False
-        if to_send[0] == "/broadcastgroups":
-            to_group = True
-        if to_send[0] == "/broadcastusers":
-            to_user = True
-        else:
-            to_group = to_user = True
-        chats = sql.get_all_chats() or []
-        users = get_all_users()
-        failed = 0
-        failed_user = 0
-        if to_group:
-            for chat in chats:
-                try:
-                    context.bot.sendMessage(
-                        int(chat.chat_id),
-                        to_send[1],
-                        parse_mode="MARKDOWN")
-                    sleep(0.1)
-                except TelegramError:
-                    failed += 1
-        if to_user:
-            for user in users:
-                try:
-                    context.bot.sendMessage(
-                        int(user.user_id),
-                        to_send[1],
-                        parse_mode="MARKDOWN")
-                    sleep(0.1)
-                except TelegramError:
-                    failed_user += 1
-        update.effective_message.reply_text(
-            f"Broadcast complete.\nGroups failed: {failed}.\nUsers failed: {failed_user}.")
 
 
 dispatcher.run_async
