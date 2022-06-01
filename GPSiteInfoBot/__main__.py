@@ -141,6 +141,21 @@ for module_name in ALL_MODULES:
         USER_SETTINGS[imported_module.__mod_name__.lower()] = imported_module
 
 
+HELP_STRINGS = """
+Hey there! My name is *{}*.
+I'm a Hero For Fun and help admins manage their groups. Have a look at the following for an idea of some of \
+the things I can help you with.
+
+*Main* commands available:
+ • /help: PM's you this message.
+ • /help <module name>: PM's you info about that module.
+
+{}
+And the following:
+""".format(
+    dispatcher.bot.first_name,
+    "All commands can either be used with /")
+
 # do not async
 def send_help(chat_id, text, keyboard=None):
     if not keyboard:
