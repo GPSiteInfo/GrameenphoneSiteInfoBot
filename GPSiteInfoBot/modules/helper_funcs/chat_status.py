@@ -5,30 +5,18 @@ from cachetools import TTLCache
 from telegram import Chat, ChatMember, ParseMode, Update
 from telegram.ext import CallbackContext
 
-from GPSiteInfoBot import DEL_CMDS, SUDO_USERS, DEV_USERS, SUPPORT_USERS, SUPPORT_CHAT, TIGER_USERS, WHITELIST_USERS, OWNER_ID, dispatcher
+from GPSiteInfoBot import SUPPORT_CHAT, dispatcher
+
+DEL_CMDS = "true"
 
 # stores admemes in memory for 10 min.
 ADMIN_CACHE = TTLCache(maxsize=512, ttl=60 * 10)
 THREAD_LOCK = RLock()
 
 
-def is_whitelist_plus(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
-    return any(user_id in user for user in [WHITELIST_USERS, TIGER_USERS, SUPPORT_USERS, SUDO_USERS, DEV_USERS])
-
-
-def is_support_plus(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
-    return user_id in SUPPORT_USERS or user_id in SUDO_USERS or user_id in DEV_USERS
-
-
-def is_sudo_plus(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
-    return user_id in SUDO_USERS or user_id in DEV_USERS
-
-
 def is_user_admin(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
     if (
         chat.type == "private"
-        or user_id in SUDO_USERS
-        or user_id in DEV_USERS
         or chat.all_members_are_administrators
         or user_id in [1087968824]):  
         # Count telegram and Group Anonymous as admin
@@ -69,10 +57,6 @@ def can_delete(chat: Chat, bot_id: int) -> bool:
 def is_user_ban_protected(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
     if (
         chat.type == "private"
-        or user_id in SUDO_USERS
-        or user_id in DEV_USERS
-        or user_id in WHITELIST_USERS
-        or user_id in TIGER_USERS
         or chat.all_members_are_administrators
         or user_id in [1087968824]):
          # Count telegram and Group Anonymous as admin
@@ -110,77 +94,6 @@ def owner_plus(func):
             )
 
     return is_owner_plus_func
-
-def dev_plus(func):
-    @wraps(func)
-    def is_dev_plus_func(update: Update, context: CallbackContext, *args, **kwargs):
-        context.bot
-        user = update.effective_user
-
-        if user.id in DEV_USERS:
-            return func(update, context, *args, **kwargs)
-        elif not user:
-            pass
-        elif DEL_CMDS and " " not in update.effective_message.text:
-            update.effective_message.delete()
-        else:
-            update.effective_message.reply_text(
-                "This is a developer restricted command."
-                " You do not have permissions to run this")
-
-    return is_dev_plus_func
-
-
-def sudo_plus(func):
-    @wraps(func)
-    def is_sudo_plus_func(update: Update, context: CallbackContext, *args, **kwargs):
-        context.bot
-        user = update.effective_user
-        chat = update.effective_chat
-
-        if user and is_sudo_plus(chat, user.id):
-            return func(update, context, *args, **kwargs)
-        elif not user:
-            pass
-        elif DEL_CMDS and " " not in update.effective_message.text:
-            update.effective_message.delete()
-        else:
-            update.effective_message.reply_text(
-                "Who dis non-admin telling me what to do? You want a punch?")
-
-    return is_sudo_plus_func
-
-
-def support_plus(func):
-    @wraps(func)
-    def is_support_plus_func(update: Update, context: CallbackContext, *args, **kwargs):
-        context.bot
-        user = update.effective_user
-        chat = update.effective_chat
-
-        if user and is_support_plus(chat, user.id):
-            return func(update, context, *args, **kwargs)
-        elif DEL_CMDS and " " not in update.effective_message.text:
-            update.effective_message.delete()
-
-    return is_support_plus_func
-
-
-def whitelist_plus(func):
-    @wraps(func)
-    def is_whitelist_plus_func(
-        update: Update, context: CallbackContext, *args, **kwargs):
-        context.bot
-        user = update.effective_user
-        chat = update.effective_chat
-
-        if user and is_whitelist_plus(chat, user.id):
-            return func(update, context, *args, **kwargs)
-        else:
-            update.effective_message.reply_text(
-                f"You don't have access to use this.\nVisit @{SUPPORT_CHAT}")
-
-    return is_whitelist_plus_func
 
 
 def user_admin(func):
